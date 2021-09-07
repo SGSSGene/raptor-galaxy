@@ -1,0 +1,49 @@
+<tool id="raptor-build" name="Raptor: A fast and space-efficient pre-filter for querying very large collections of nucleotide sequences" version="2.0.0" python_template_version="3.5">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        echo "" > files.txt;
+        #for $i, $s in enumerate($series)
+            ln -s '${s.input}' genome${i}.fasta;
+            echo genome${i}.fasta >> files.txt;
+        #end for
+        pwd;
+        cat files.txt;
+        raptor build files.txt --kmer 2 --size 1k --output output.index;
+        ls;
+        cp output.index /tmp/output.index
+    ]]></command>
+    <inputs>
+        <repeat name="series" title="Series">
+            <param type="data" format="txt" name="input" />
+        </repeat>
+    </inputs>
+    <outputs>
+        <data name="index" format="binary" from_work_dir="output.index" />
+    </outputs>
+    <tests>
+        <test>
+            <repeat name="series">
+                <param name="input" value="genome0.fasta" />
+            </repeat>
+            <repeat name="series">
+                <param name="input" value="genome1.fasta" />
+            </repeat>
+            <output name="index" file="test_expected.index" />
+        </test>
+    </tests>
+
+    <help><![CDATA[Raptor - A fast and space-efficient pre-filter for querying very large collections of nucleotide sequences.
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubraptor,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {raptor},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/seqan/raptor},
+}</citation>
+    </citations>
+</tool>
