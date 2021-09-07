@@ -1,0 +1,35 @@
+<tool id="raptor-search" name="Raptor: A fast and space-efficient pre-filter for querying very large collections of nucleotide sequences" version="1.1.0" python_template_version="3.5">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        ln -s '${query}' query.fasta;
+        raptor search --index '${index}' --query query.fasta --output results.txt;
+    ]]></command>
+    <inputs>
+        <param type="data" format="fasta" name="query" />
+        <param type="data" format="binary" name="index" />
+    </inputs>
+    <outputs>
+        <data name="results" format="txt" from_work_dir="results.txt" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="index" value="test_expected.index" />
+            <param name="query" value="query.fasta" />
+            <output name="results" file="expected_query_results.txt" />
+        </test>
+    </tests>
+    <help><![CDATA[Raptor - A fast and space-efficient pre-filter for querying very large collections of nucleotide sequences.
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubraptor,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {raptor},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/seqan/raptor},
+}</citation>
+    </citations>
+</tool>
