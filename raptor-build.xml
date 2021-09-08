@@ -8,16 +8,30 @@
             ln -s '${s.input}' genome${i}.fasta;
             echo genome${i}.fasta >> files.txt;
         #end for
-        pwd;
-        cat files.txt;
-        raptor build files.txt --kmer 2 --size 1k --output output.index;
-        ls;
-        cp output.index /tmp/output.index
+        param=""
+        #if $window
+            param="\${param} --window ${window}"
+        #end if
+        raptor build files.txt --threads ${threads} --parts ${parts} --kmer ${kmer} --size ${size} --hash ${hash} \${param} ${compressed} ${compute_minimiser} ${disable_cutoffs} --output output.index;
     ]]></command>
     <inputs>
         <repeat name="series" title="Series">
             <param type="data" format="txt" name="input" />
         </repeat>
+        <param name="threads" type="integer" value="1" min="1" />
+        <param name="parts" type="integer" value="1" min="1" />
+        <param name="window" type="integer" optional="true" min="1" />
+        <param name="kmer" type="integer" value="20" min="1" max="32" />
+        <param name="size" type="text" value="1k" >
+            <option value="1k">1k</option>
+            <option value="1m">1m</option>
+            <option value="1g">1g</option>
+            <option value="1t">1t</option>
+        </param>
+        <param name="hash" type="integer" value="2" min="1" max="5" />
+        <param name="compressed" type="boolean" truevalue="--compressed" falsevalue="" />
+        <param name="compute_minimiser" type="boolean" truevalue="--compute-minimiser" falsevalue="" />
+        <param name="disable_cutoffs" type="boolean" truevalue="--disable-cutoffs" falsevalue=""/>
     </inputs>
     <outputs>
         <data name="index" format="binary" from_work_dir="output.index" />
@@ -30,6 +44,8 @@
             <repeat name="series">
                 <param name="input" value="genome1.fasta" />
             </repeat>
+            <param name="kmer" value="2" />
+            <param name="size" value="1k" />
             <output name="index" file="test_expected.index" />
         </test>
     </tests>
