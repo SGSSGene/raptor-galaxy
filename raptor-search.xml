@@ -4,11 +4,27 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         ln -s '${query}' query.fasta;
-        raptor search --index '${index}' --query query.fasta --output results.txt;
+        param=""
+        #if $threshold
+            param="\${param} --threshold ${threshold}"
+        #end if
+        #if $tau
+            param="\${param} --tau ${tau}"
+        #end if
+        #if $pattern
+            param="\${param} --pattern ${pattern}"
+        #end if
+
+        raptor search --index '${index}' --query query.fasta \${param} --output results.txt;
     ]]></command>
     <inputs>
-        <param type="data" format="fasta" name="query" />
-        <param type="data" format="binary" name="index" />
+        <param name="threads" type="integer" value="1" min="1" />
+        <param name="index" type="data" format="binary" />
+        <param name="query" type="data" format="fasta" />
+        <param name="error" type="integer" value="0" min="0" />
+        <param name="tau" type="float" value="0.99" min="0" max="1" />
+        <param name="threshold" type="float" value="0" min="0" max="1" optional="true" />
+        <param name="pattern" type="integer" optional="true"/>
     </inputs>
     <outputs>
         <data name="results" format="txt" from_work_dir="results.txt" />
