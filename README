@@ -1,1 +1,18 @@
 # raptor-galaxy
+
+This is currently a test repository to try how to upload seqan3 based apps to galaxy tool shed
+
+
+## How to upload to testtoolshed
+- Notice: updating to the toolshed seems to only work if the version of <tool> is adjusted.
+- (assuming that planemo is installed and sourced)
+- create account at https://testtoolshed.g2.bx.psu.edu
+- run `$ planemo config_init` to create a planemo config
+- insert shed_username and api key into ~/.planemo.yml
+- run `$ planemo shed_update --shed_target testtoolshed path/to/this/repo` to publish the tools of this repository
+
+## Creating a new tool
+- copy raptor-build.xml to raptor-newsubcommand.xml
+- adjust the xml file to own needs
+- run `$ planemo test raptor-newsubcommand.xml` to check tests
+- run `$ planemo shed_lint raptor-newsubcommand.xml` to lint
