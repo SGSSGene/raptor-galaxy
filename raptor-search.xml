@@ -1,4 +1,4 @@
-<tool id="raptor-search" name="Raptor: A fast and space-efficient pre-filter for querying very large collections of nucleotide sequences" version="2.0.0+1" python_template_version="3.5">
+<tool id="raptor-search" name="raptor search" version="2.0.0+2" python_template_version="3.5">
     <requirements>
         <requirement type="package" version="2.0.0">raptor</requirement>
     </requirements>
@@ -18,13 +18,13 @@
         raptor search --index '${index}' --query query.fasta \${param} --output results.txt;
     ]]></command>
     <inputs>
-        <param name="threads" type="integer" value="1" min="1" />
-        <param name="index" type="data" format="binary" />
-        <param name="query" type="data" format="fasta" />
-        <param name="error" type="integer" value="0" min="0" />
-        <param name="tau" type="float" value="0.99" min="0" max="1" />
-        <param name="threshold" type="float" value="0" min="0" max="1" optional="true" />
-        <param name="pattern" type="integer" optional="true"/>
+        <param name="threads" type="integer" value="1" min="1" label="The numer of threads to use. Default: 1. Value must be a positive integer." />
+        <param name="index" type="data" format="binary" label="Provide a valid path to an index. Parts: Without suffix _0 " />
+        <param name="query" type="data" format="fasta" label="Provide a path to the query file. The input file must exist and read permissions must be granted." />
+        <param name="error" type="integer" value="0" min="0" label="The number of errors Default: 0. Value must be a positive integer or 0." />
+        <param name="tau" type="float" value="0.99" min="0" max="1" label="Threshold for probabilistic models. Default: 0.99. Value must be in range [0,1]." />
+        <param name="threshold" type="float" value="0" min="0" max="1" optional="true" label="If set, this threshold is used instead of the probabilistic models. Default: 0. Value must be in range [0,1]." />
+        <param name="pattern" type="integer" optional="true" label="The pattern size. Default: Use median of sequence lengths in query file. Default: 0." />
     </inputs>
     <outputs>
         <data name="results" format="txt" from_work_dir="results.txt" />
@@ -37,6 +37,59 @@
         </test>
     </tests>
     <help><![CDATA[Raptor - A fast and space-efficient pre-filter for querying very large collections of nucleotide sequences.
+===========================================================================================================
+
+OPTIONS
+
+  Basic options:
+    -h, --help
+          Prints the help page.
+    -hh, --advanced-help
+          Prints the help page including advanced options.
+    --version
+          Prints the version information.
+    --copyright
+          Prints the copyright/license information.
+    --export-help (std::string)
+          Export the help page information. Value must be one of [html, man].
+    --threads (unsigned 8 bit integer)
+          The numer of threads to use. Default: 1. Value must be a positive integer.
+    --index (std::filesystem::path)
+          Provide a valid path to an index. Parts: Without suffix _0
+    --query (std::filesystem::path)
+          Provide a path to the query file. The input file must exist and read permissions must be granted.
+    --output (std::filesystem::path)
+          Provide a path to the output.
+    --error (unsigned 8 bit integer)
+          The number of errors Default: 0. Value must be a positive integer or 0.
+    --tau (double)
+          Threshold for probabilistic models. Default: 0.99. Value must be in range [0,1].
+    --threshold (double)
+          If set, this threshold is used instead of the probabilistic models. Default: 0. Value must be in range
+          [0,1].
+    --pattern (unsigned 64 bit integer)
+          The pattern size. Default: Use median of sequence lengths in query file. Default: 0.
+
+EXAMPLES
+    raptor search --error 2 --index raptor.index --query queries.fastq --output search.output
+
+VERSION
+    Last update: 2021-08-26
+    Raptor version: 2.0.0 (raptor-v2.0.0)
+    SeqAn version: 3.1.0-rc.2
+
+URL
+    https://github.com/seqan/raptor
+
+LEGAL
+    Raptor Copyright: BSD 3-Clause License
+    Author: Enrico Seiler
+    Contact: enrico.seiler@fu-berlin.de
+    SeqAn Copyright: 2006-2021 Knut Reinert, FU-Berlin; released under the 3-clause BSDL.
+    In your academic works please cite: Raptor: A fast and space-efficient pre-filter for querying very large
+    collections of nucleotide sequences; Enrico Seiler, Svenja Mehringer, Mitra Darvish, Etienne Turc, and Knut
+    Reinert; iScience 2021 24 (7): 102782. doi: https://doi.org/10.1016/j.isci.2021.102782
+    For full copyright and/or warranty information see --copyright.
     ]]></help>
     <citations>
         <citation type="bibtex">
