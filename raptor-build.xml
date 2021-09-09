@@ -1,7 +1,10 @@
-<tool id="raptor-build" name="raptor build" version="2.0.0+2" python_template_version="3.5">
+<tool id="raptor-build" name="raptor build" version="2.0.0+3" python_template_version="3.5">
     <requirements>
         <requirement type="package" version="2.0.0">raptor</requirement>
     </requirements>
+    <description>
+        Builds an index to be used by `raptor search`.
+    </description>
     <command detect_errors="exit_code"><![CDATA[
         echo "" > files.txt;
         #for $i, $s in enumerate($series)
