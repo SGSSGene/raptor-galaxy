@@ -96,13 +96,23 @@ LEGAL
     ]]></help>
     <citations>
         <citation type="bibtex">
-@misc{githubraptor,
-  author = {LastTODO, FirstTODO},
-  year = {TODO},
-  title = {raptor},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  url = {https://github.com/seqan/raptor},
+@Article{Seiler2021,
+author={Seiler, Enrico
+and Mehringer, Svenja
+and Darvish, Mitra
+and Turc, Etienne
+and Reinert, Knut},
+title={Raptor: A fast and space-efficient pre-filter for querying very large collections of nucleotide sequences},
+journal={iScience},
+year={2021},
+month={Jul},
+day={23},
+publisher={Elsevier},
+volume={24},
+number={7},
+issn={2589-0042},
+doi={10.1016/j.isci.2021.102782},
+url={https://doi.org/10.1016/j.isci.2021.102782}
 }</citation>
     </citations>
 </tool>
