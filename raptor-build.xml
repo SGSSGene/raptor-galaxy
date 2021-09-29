@@ -54,6 +54,88 @@
     </tests>
 
     <help><![CDATA[Raptor - A fast and space-efficient pre-filter for querying very large collections of nucleotide sequences.
+===========================================================================================================
+
+POSITIONAL ARGUMENTS
+    ARGUMENT-1 (std::filesystem::path)
+          File containing file names. The file must contain at least one file
+          path per line, with multiple paths being separated by a whitespace.
+          Each line in the file corresponds to one bin. Valid extensions for
+          the paths in the file are [minimiser] when preprocessing, and
+          [embl,fasta,fa,fna,ffn,faa,frn,fas,fastq,fq,genbank,gb,gbk,sam],
+          possibly followed by [bz2,gz,bgzf] otherwise. The input file must
+          exist and read permissions must be granted.
+
+OPTIONS
+
+  Basic options:
+    -h, --help
+          Prints the help page.
+    -hh, --advanced-help
+          Prints the help page including advanced options.
+    --version
+          Prints the version information.
+    --copyright
+          Prints the copyright/license information.
+    --export-help (std::string)
+          Export the help page information. Value must be one of [html, man].
+    --threads (unsigned 8 bit integer)
+          The numer of threads to use. Default: 1. Value must be a positive
+          integer.
+    --parts (unsigned 8 bit integer)
+          Splits the index in this many parts. Default: 1. Value must be a
+          power of two.
+    --window (unsigned 32 bit integer)
+          The window size. Default: 20. Value must be a positive integer.
+    --kmer (unsigned 8 bit integer)
+          The k-mer size. Default: 20. Value must be in range [1,32].
+    --output (std::filesystem::path)
+          Provide an output filepath or an output directory if
+          --compute-minimiser is used.
+    --size (std::string)
+          The size in bytes of the resulting index. Default: 1k. Must be an
+          integer followed by [k,m,g,t] (case insensitive).
+    --hash (unsigned 64 bit integer)
+          The number of hash functions to use. Default: 2. Value must be in
+          range [1,5].
+    --compressed
+          Build a compressed index.
+    --compute-minimiser
+          Computes minimisers using cutoffs from Mantis (Pandey et al.). Does
+          not create the index.
+    --disable-cutoffs
+          Do not apply cutoffs when using --compute-minimiser.
+
+EXAMPLES
+    raptor build --kmer 19 --window 23 --size 8m --output raptor.index
+    all_bin_paths.txt
+
+    raptor build --kmer 19 --window 23 --compute-minimiser --output
+    precomputed_minimisers all_bin_paths.txt
+
+    raptor build --size 8m --output minimiser_raptor.index
+    all_minimiser_paths.txt
+
+VERSION
+    Last update: 2021-08-26
+    Raptor version: 2.0.0 (raptor-v2.0.0)
+    SeqAn version: 3.1.0-rc.2
+
+URL
+    https://github.com/seqan/raptor
+
+LEGAL
+    Raptor Copyright: BSD 3-Clause License
+    Author: Enrico Seiler
+    Contact: enrico.seiler@fu-berlin.de
+    SeqAn Copyright: 2006-2021 Knut Reinert, FU-Berlin; released under the
+    3-clause BSDL.
+    In your academic works please cite: Raptor: A fast and space-efficient
+    pre-filter for querying very large collections of nucleotide sequences;
+    Enrico Seiler, Svenja Mehringer, Mitra Darvish, Etienne Turc, and Knut
+    Reinert; iScience 2021 24 (7): 102782. doi:
+    https://doi.org/10.1016/j.isci.2021.102782
+    For full copyright and/or warranty information see --copyright.
     ]]></help>
     <citations>
         <citation type="bibtex">
