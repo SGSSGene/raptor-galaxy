@@ -69,16 +69,6 @@ POSITIONAL ARGUMENTS
 OPTIONS
 
   Basic options:
-    -h, --help
-          Prints the help page.
-    -hh, --advanced-help
-          Prints the help page including advanced options.
-    --version
-          Prints the version information.
-    --copyright
-          Prints the copyright/license information.
-    --export-help (std::string)
-          Export the help page information. Value must be one of [html, man].
     --threads (unsigned 8 bit integer)
           The numer of threads to use. Default: 1. Value must be a positive
           integer.
