@@ -7,8 +7,8 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         echo "" > files.txt;
-        #for $i, $s in enumerate($bin)
-            ln -s '${s.input}' genome${i}.fasta;
+        #for $i, $s in enumerate($inputs)
+            ln -s '${s}' genome${i}.fasta;
             echo genome${i}.fasta >> files.txt;
         #end for
         param="";
@@ -18,9 +18,7 @@
         raptor build files.txt --threads ${threads} --parts ${parts} --kmer ${kmer} --size ${size} --hash ${hash} \${param} ${compressed} ${compute_minimiser} ${disable_cutoffs} --output output.index;
     ]]></command>
     <inputs>
-        <repeat name="bin" title="Fasta file">
-            <param type="data" label="Fasta file" format="fasta" name="input" />
-        </repeat>
+        <param name="inputs" label="Files representing a bin each" type="data" format="fasta" multiple="true" />
         <param name="threads" label="Threads" type="integer" value="1" min="1" help="The numer of threads to use. Default: 1. Value must be a positive integer. " />
         <param name="parts" label="Parts" type="integer" value="1" min="1" help="Splits the index in this many parts. Default: 1. Value must be a power of two." />
         <param name="window" label="Window size" type="integer" optional="true" min="1" help="The window size. Default: kmer size. Value must be a positive integer." />
@@ -41,12 +39,7 @@
     </outputs>
     <tests>
         <test>
-            <repeat name="bin">
-                <param name="input" value="genome0.fasta" />
-            </repeat>
-            <repeat name="bin">
-                <param name="input" value="genome1.fasta" />
-            </repeat>
+            <param name="inputs" value="genome0.fasta,genome1.fasta" />
             <param name="kmer" value="2" />
             <param name="size" value="1k" />
             <output name="index" file="test_expected.index" />
