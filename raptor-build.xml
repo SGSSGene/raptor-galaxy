@@ -1,4 +1,4 @@
-<tool id="raptor-build" name="raptor build" version="2.0.0+5" python_template_version="3.5">
+<tool id="raptor-build" name="raptor build" version="2.0.0+8" python_template_version="3.5">
     <description>
         Builds an index to be used by `raptor search`.
     </description>

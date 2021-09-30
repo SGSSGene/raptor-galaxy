@@ -1,4 +1,4 @@
-<tool id="raptor-search" name="raptor search" version="2.0.0+5" python_template_version="3.5">
+<tool id="raptor-search" name="raptor search" version="2.0.0+8" python_template_version="3.5">
     <description>
         Queries an index to determine which fasta file the query can be found in.
     </description>
