@@ -7,18 +7,13 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         ln -s '${query}' query.fasta;
-        param="";
-        #if $threshold
-            param="\${param} --threshold ${threshold}";
-        #end if
-        #if $tau
-            param="\${param} --tau ${tau}";
-        #end if
-        #if $pattern
-            param="\${param} --pattern ${pattern}";
-        #end if
-
-        raptor search --index '${index}' --query query.fasta \${param} --output results.txt;
+        raptor search
+            --index '${index}'
+            --query query.fasta
+            --output results.txt
+            #if $threshold# --threshold ${threshold} #end if#
+            #if $tau#       --tau ${tau} #end if#
+            #if $pattern#   --pattern ${pattern} #end if#
     ]]></command>
     <inputs>
         <param name="threads" label="Threads" type="integer" value="1" min="1" help="The numer of threads to use. Default: 1. Value must be a positive integer." />

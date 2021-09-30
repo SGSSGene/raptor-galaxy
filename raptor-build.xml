@@ -11,11 +11,18 @@
             ln -s '${s}' genome${i}.fasta;
             echo genome${i}.fasta >> files.txt;
         #end for
-        param="";
-        #if $window
-            param="\${param} --window ${window}";
-        #end if
-        raptor build files.txt --threads ${threads} --parts ${parts} --kmer ${kmer} --size ${size} --hash ${hash} \${param} ${compressed} ${compute_minimiser} ${disable_cutoffs} --output output.index;
+
+        raptor build files.text
+            #if $window$ --window ${window} #end if#
+            --threads ${threads}
+            --parts ${parts}
+            --kmer ${kmer}
+            --size ${size}
+            --hash ${hash}
+            ${compressed}
+            ${compute_minimiser}
+            ${disable_cutoffs}
+            --output output.index;
     ]]></command>
     <inputs>
         <param name="inputs" label="Files representing a bin each" type="data" format="fasta" multiple="true" />
