@@ -21,13 +21,13 @@
         raptor search --index '${index}' --query query.fasta \${param} --output results.txt;
     ]]></command>
     <inputs>
-        <param name="threads" type="integer" value="1" min="1" label="The numer of threads to use. Default: 1. Value must be a positive integer." />
-        <param name="index" type="data" format="binary" label="Provide a valid path to an index. Parts: Without suffix _0 " />
-        <param name="query" type="data" format="fasta" label="Provide a path to the query file. The input file must exist and read permissions must be granted." />
-        <param name="error" type="integer" value="0" min="0" label="The number of errors Default: 0. Value must be a positive integer or 0." />
-        <param name="tau" type="float" value="0.99" min="0" max="1" label="Threshold for probabilistic models. Default: 0.99. Value must be in range [0,1]." />
-        <param name="threshold" type="float" value="0" min="0" max="1" optional="true" label="If set, this threshold is used instead of the probabilistic models. Default: 0. Value must be in range [0,1]." />
-        <param name="pattern" type="integer" optional="true" label="The pattern size. Default: Use median of sequence lengths in query file. Default: 0." />
+        <param name="threads" label="Threads" type="integer" value="1" min="1" help="The numer of threads to use. Default: 1. Value must be a positive integer." />
+        <param name="index" label="Index" type="data" format="binary" help="Provide a valid path to an index. Parts: Without suffix _0 " />
+        <param name="query" label="Query" type="data" format="fasta" help="Provide a path to the query file. The input file must exist and read permissions must be granted." />
+        <param name="error" label="Allowed errors" type="integer" value="0" min="0" help="The number of errors Default: 0. Value must be a positive integer or 0." />
+        <param name="tau" label="Probabilistic threshold τ" type="float" value="0.99" min="0" max="1" help="Threshold for probabilistic models. Default: 0.99. Value must be in range [0,1]." />
+        <param name="threshold" label="Non-Probabilistic threshold" type="float" value="0" min="0" max="1" optional="true" help="If set, this threshold is used instead of the probabilistic models. Default: 0. Value must be in range [0,1]." />
+        <param name="pattern" label="Pattern size" type="integer" optional="true" help="The pattern size. Default: Use median of sequence lengths in query file. Default: 0." />
     </inputs>
     <outputs>
         <data name="results" format="txt" from_work_dir="results.txt" />
