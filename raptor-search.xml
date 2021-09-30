@@ -1,4 +1,4 @@
-<tool id="raptor-search" name="raptor search" version="2.0.0+3" python_template_version="3.5">
+<tool id="raptor-search" name="raptor search" version="2.0.0+5" python_template_version="3.5">
     <requirements>
         <requirement type="package" version="2.0.0">raptor</requirement>
     </requirements>
