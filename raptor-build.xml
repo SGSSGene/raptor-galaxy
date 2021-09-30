@@ -11,9 +11,9 @@
             ln -s '${s.input}' genome${i}.fasta;
             echo genome${i}.fasta >> files.txt;
         #end for
-        param=""
+        param="";
         #if $window
-            param="\${param} --window ${window}"
+            param="\${param} --window ${window}";
         #end if
         raptor build files.txt --threads ${threads} --parts ${parts} --kmer ${kmer} --size ${size} --hash ${hash} \${param} ${compressed} ${compute_minimiser} ${disable_cutoffs} --output output.index;
     ]]></command>

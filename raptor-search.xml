@@ -7,15 +7,15 @@
     </description>
     <command detect_errors="exit_code"><![CDATA[
         ln -s '${query}' query.fasta;
-        param=""
+        param="";
         #if $threshold
-            param="\${param} --threshold ${threshold}"
+            param="\${param} --threshold ${threshold}";
         #end if
         #if $tau
-            param="\${param} --tau ${tau}"
+            param="\${param} --tau ${tau}";
         #end if
         #if $pattern
-            param="\${param} --pattern ${pattern}"
+            param="\${param} --pattern ${pattern}";
         #end if
 
         raptor search --index '${index}' --query query.fasta \${param} --output results.txt;
