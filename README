@@ -15,4 +15,4 @@ This is currently a test repository to try how to upload seqan3 based apps to ga
 - copy raptor-build.xml to raptor-newsubcommand.xml
 - adjust the xml file to own needs
 - run `$ planemo test raptor-newsubcommand.xml` to check tests
-- run `$ planemo shed_lint raptor-newsubcommand.xml` to lint
+- run `$ planemo lint raptor-newsubcommand.xml` to lint
